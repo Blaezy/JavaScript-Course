@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice Calculator</title>
+  </head>
+  <body>
+    <p>Calculator</p>
+
+    <p>
+      <button onclick="updatedCalculation('1');">1</button>
+      <button onclick="updatedCalculation('2');">2</button>
+      <button onclick="updatedCalculation('3');">3</button>
+      <button onclick="updatedCalculation(' + ');">+</button>
+    </p>
+
+    <p>
+      <button onclick="updatedCalculation('4');">4</button>
+      <button onclick="updatedCalculation('5');">5</button>
+      <button onclick="updatedCalculation('6');">6</button>
+      <button onclick="updatedCalculation(' - ');">-</button>
+    </p>
+
+    <p>
+      <button onclick="updatedCalculation('7');">7</button>
+      <button onclick="updatedCalculation('8');">8</button>
+      <button onclick="updatedCalculation('9');">9</button>
+      <button onclick="updatedCalculation(' * ');">*</button>
+    </p>
+
+    <p>
+      <button onclick="updatedCalculation('0');">0</button>
+      <button onclick="updatedCalculation('.');">.</button>
+      <button onclick="updatedCalculation(' / ');">/</button>
+      <button onclick="equalButton();">=</button>
+    </p>
+  </body>
+
+  <button onclick="clearLog();">Clear</button>
+
+  <script>
+    let calculator = "";
+
+    function updatedCalculation(buttonValue) {
+      calculator = calculator + buttonValue;
+      console.log(calculator);
+    }
+
+    function equalButton() {
+      let total = eval(calculator);
+      console.log(total);
+      calculator = "";
+    }
+
+    function clearLog() {
+      calculator = "";
+      console.log("Cleared.");
+    }
+
+    console.log(calculator);
+  </script>
+</html>

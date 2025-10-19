@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice Calculator</title>
+  </head>
+  <body>
+    <p>Calculator</p>
+
+    <p>
+      <button
+        onclick="
+        calculator = calculator + '1';
+        console.log(calculator);
+        
+        "
+      >
+        1
+      </button>
+      <button
+        onclick="
+        calculator = calculator + '2';
+        console.log(calculator);
+      
+      "
+      >
+        2
+      </button>
+      <button
+        onclick="
+        calculator = calculator + '3';
+        console.log(calculator);"
+      >
+        3
+      </button>
+      <button
+        onclick="
+      
+        calculator = calculator + ' + ';
+        console.log(calculator);"
+      >
+        +
+      </button>
+    </p>
+
+    <p>
+      <button
+        onclick="
+        calculator = calculator + '4';
+        console.log(calculator);"
+      >
+        4
+      </button>
+      <button
+        onclick="
+        calculator = calculator + '5';
+        console.log(calculator);"
+      >
+        5
+      </button>
+      <button
+        onclick="
+        calculator = calculator + '6';
+        console.log(calculator);"
+      >
+        6
+      </button>
+      <button
+        onclick="
+        calculator = calculator + ' - ';
+        console.log(calculator);"
+      >
+        -
+      </button>
+    </p>
+
+    <p>
+      <button
+        onclick="
+        calculator = calculator + '7';
+        console.log(calculator);"
+      >
+        7
+      </button>
+      <button
+        onclick="
+        calculator = calculator + '8';
+        console.log(calculator);"
+      >
+        8
+      </button>
+      <button
+        onclick="
+        calculator = calculator + '9';
+        console.log(calculator);"
+      >
+        9
+      </button>
+      <button
+        onclick="
+        calculator = calculator + ' * ';
+        console.log(calculator);"
+      >
+        *
+      </button>
+    </p>
+
+    <p>
+      <button
+        onclick="
+        calculator = calculator + '0';
+        console.log(calculator);"
+      >
+        0
+      </button>
+      <button
+        onclick="
+        calculator = calculator + '.';
+        console.log(calculator);"
+      >
+        .
+      </button>
+      <button
+        onclick="
+        calculator = calculator + ' / ';
+        console.log(calculator);"
+      >
+        /
+      </button>
+      <button
+        onclick="
+        
+        let total = eval(calculator);
+        console.log(total);
+        calculator = '';
+      "
+      >
+        =
+      </button>
+    </p>
+  </body>
+
+  <button
+    onclick="
+    calculator = '';
+    console.log('Cleared.');
+  "
+  >
+    Clear
+  </button>
+
+  <script>
+    let calculator = "";
+
+    console.log(calculator);
+  </script>
+</html>

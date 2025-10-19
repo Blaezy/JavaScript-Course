@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buttons</title>
+    <style>
+      .add {
+        background-color: yellow;
+        border-style: solid;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+      .add:active {
+        translate: 2px 2px;
+      }
+
+      .buy:active {
+        translate: 2px 2px;
+      }
+      .buy {
+        background-color: orange;
+        border-style: solid;
+        cursor: pointer;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Adults Plain's Cotton T-shirt</p>
+    <p>Price: $7.99</p>
+    <button class="add" onclick="console.log('Added');">Add to Cart</button>
+    <button class="buy" onclick="console.log('Loading...\nPurchased');">
+      Buy Now
+    </button>
+  </body>
+</html>
