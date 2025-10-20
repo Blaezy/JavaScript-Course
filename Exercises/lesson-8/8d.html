@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>exercise 8d</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const product1 = {
+        name: "ball",
+        price: 230,
+      };
+      const product2 = {
+        name: "chips",
+        price: 180,
+      };
+
+      function comparePrice(product1, product2) {
+        if (product1.price < product2.price) return product1;
+        else return product2;
+      }
+
+      console.log(comparePrice(product1,product2));
+    </script>
+  </body>
+</html>

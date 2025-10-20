@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 8k</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Guess the Coin Flip</p>
+    <button onclick="playGame('Head');">Head</button>
+    <button onclick="playGame('Tail');">Tail</button>
+    <button onclick="resetScore();">Reset Score</button>
+
+    <script>
+
+      const coinScore = JSON.parse(localStorage.getItem("coinScore")) || {
+          Wins: 0,
+          Losses: 0,
+        };
+      console.log('jelly');
+      console.log(coinScore);
+
+      function playGame(guess) {
+        const randomNumber = Math.random();
+        let result = "";
+
+        randomNumber < 0.5 ? (result = "Head") : (result = "Tail");
+
+        if (guess === result) {
+          coinScore.Wins += 1;
+          alert(
+            `Its ${result}. You win.\nWins: ${coinScore.Wins}. Losses: ${coinScore.Losses}.`
+          );
+        } else {
+          coinScore.Losses += 1;
+          alert(
+            `Its ${result}. You lose.\nWins: ${coinScore.Wins}. Losses: ${coinScore.Losses}.`
+          );
+        }
+
+        localStorage.setItem('coinScore', JSON.stringify(coinScore));
+
+        console.log(coinScore);
+      }
+
+      function resetScore(){
+        coinScore.Wins = 0;
+        coinScore.Losses = 0;
+
+        // localStorage.setItem('coinScore', JSON.stringify(coinScore));
+        localStorage.removeItem('coinScore');
+      }
+
+    </script>
+  </body>
+</html>
