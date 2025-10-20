@@ -2,10 +2,66 @@
 <html>
   <head>
     <title>Object</title>
+    <style>
+      body{
+        background-color:#1e1e1e;
+      }
+    </style>
   </head>
   <body>
     <script>
       console.log('hello');
+
+      const object1 = {
+        name: 'Gustave',
+        age: 24,
+        func: function ability1(){
+          console.log('He can shoot');
+        }
+      };
+
+      console.log(object1);
+      
+      console.log(JSON.stringify(object1));
+      
+      const bully = JSON.stringify(object1);
+      object1.func();
+
+      console.log(JSON.parse(bully));
+
+
+      console.log('----------------------------------------------------------------');
+
+
+      const object2 = {
+        item: 'potatoChips',
+        quantity: 4
+      }
+
+      // const item = object2.item;   // below is the shortcut of this line
+
+      const {item , quantity} = object2;
+
+      console.log(item);
+      console.log(quantity);
+
+      const object3 = {
+        // item: item  // shorcut below line  same name different object 
+        item,
+
+        // new: function bibi(){
+        //   console.log('he he ha ha');
+        // }
+
+        new(){
+          console.log('he he ha ha ');
+        }
+      }
+
+      console.log(object3);
+      object3.new();
+
+
     </script>
   </body>
 </html>
