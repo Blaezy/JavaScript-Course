@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 8j</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Guess the Coin Flip</p>
+    <button onclick="playGame('Head');">Head</button>
+    <button onclick="playGame('Tail');">Tail</button>
+    <button onclick="resetScore();">Reset Score</button>
+
+    <script>
+
+      const score = {
+          Wins: 0,
+          Losses: 0,
+        };
+
+      function playGame(guess) {
+        const randomNumber = Math.random();
+        let result = "";
+
+        randomNumber < 0.5 ? (result = "Head") : (result = "Tail");
+
+        if (guess === result) {
+          score.Wins += 1;
+          alert(
+            `Its ${result}. You win.\nWins: ${score.Wins}. Losses: ${score.Losses}.`
+          );
+        } else {
+          score.Losses += 1;
+          alert(
+            `Its ${result}. You lose.\nWins: ${score.Wins}. Losses: ${score.Losses}.`
+          );
+        }
+
+        console.log(score);
+      }
+
+      function resetScore(){
+        score.Wins = 0;
+        score.Losses = 0;
+      }
+
+    </script>
+  </body>
+</html>
