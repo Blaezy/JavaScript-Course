@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM 9b</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <p>YouTube Subscribe Button</p>
+    <button class="js-subscribe-button" onclick="subscribeButton();">
+      Subscribe
+    </button>
+
+    <script>
+      function subscribeButton() {
+        let buttonElement = document.querySelector(".js-subscribe-button");
+        console.log(buttonElement.innerHTML);
+
+        if (buttonElement.innerText === "Subscribe")
+          buttonElement.innerHTML = "Subscribed";
+        else buttonElement.innerHTML = "Subscribe";
+      }
+    </script>
+  </body>
+</html>
