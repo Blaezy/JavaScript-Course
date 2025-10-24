@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice Calculator 9j</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p{
+        color: white;
+      }
+      .js-calc-display{
+        height: 20px;
+        background-color: #1e1e1e;
+      }
+      div{
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Calculator</p>
+    <p class="js-calc-display"></p>
+
+    <div>
+      <button onclick="updatedCalculation('1');">1</button>
+      <button onclick="updatedCalculation('2');">2</button>
+      <button onclick="updatedCalculation('3');">3</button>
+      <button onclick="updatedCalculation(' + ');">+</button>
+    </div>
+
+    <div>
+      <button onclick="updatedCalculation('4');">4</button>
+      <button onclick="updatedCalculation('5');">5</button>
+      <button onclick="updatedCalculation('6');">6</button>
+      <button onclick="updatedCalculation(' - ');">-</button>
+    </div>
+
+    <div>
+      <button onclick="updatedCalculation('7');">7</button>
+      <button onclick="updatedCalculation('8');">8</button>
+      <button onclick="updatedCalculation('9');">9</button>
+      <button onclick="updatedCalculation(' * ');">*</button>
+    </div>
+
+    <div>
+      <button onclick="updatedCalculation('0');">0</button>
+      <button onclick="updatedCalculation('.');">.</button>
+      <button onclick="updatedCalculation(' / ');">/</button>
+      <button onclick="equalButton();">=</button>
+    </div>
+  </body>
+
+  <button onclick="clearLog();">Clear</button>
+
+  <script>
+    let calculator = localStorage.getItem('calculator') || "";
+
+    let displayCalc = document.querySelector('.js-calc-display');
+
+    showCalc();
+    function showCalc(){
+      displayCalc.innerHTML = calculator;
+    }
+
+    console.log();
+
+    function updatedCalculation(buttonValue) {
+      calculator = calculator + buttonValue;
+      console.log(calculator);
+
+      localStorage.setItem('calculator', calculator);
+      // console.log(calculator);
+      showCalc();
+    }
+
+    function equalButton() {
+      calculator = eval(calculator);
+      // console.log(total);
+      // calculator = "";
+      localStorage.setItem('calculator', calculator);
+      showCalc();
+    }
+
+    function clearLog() {
+      calculator = "";
+      localStorage.setItem('calculator', calculator);
+      showCalc();
+    }
+
+    // console.log(calculator);
+  </script>
+</html>

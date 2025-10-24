@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 9b</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="js-first-button">9a</button>
+    <button class="js-second-button">9a</button>
+
+    <script>
+
+      const firstButtonElement = document.querySelector('.js-first-button');
+
+      console.log(firstButtonElement.innerHTML);
+
+      const secondButtonElement = document.querySelector('.js-second-button');
+
+      secondButtonElement.innerHTML = '9b done!';
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 9g</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping</p>
+    <p>Orders over $40 = FREE shipping</p>
+    <input
+      type="number"
+      placeholder="Cost of order"
+      class="js-input"
+      onkeydown="inputKeyDown(event);"
+    />
+    <button onclick="costCalculate();">Calculate</button>
+
+    <p class="js-totalCost"></p>
+
+    <script>
+      function costCalculate() {
+        const inputElement = document.querySelector(".js-input");
+        let cost = Number(inputElement.value);
+        cost = cost * 100;
+
+        if (cost < 4000) {
+          cost = cost + 1000;
+        }
+
+        cost = cost / 100;
+        document.querySelector(
+          ".js-totalCost"
+        ).innerHTML = `Your Total Cost : $${cost}`;
+      }
+
+      function inputKeyDown(event) {
+        if (event.key === "Enter") costCalculate();
+      }
+    </script>
+  </body>
+</html>

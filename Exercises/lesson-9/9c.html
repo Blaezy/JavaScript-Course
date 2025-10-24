@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 9c</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="js-head-button" onclick="choose('Head');">Head</button>
+    <button class="js-tail-button" onclick="choose('Tail')">Tail</button>
+    <p class="js-para"></p>
+
+    <script>
+      const headButtonElement = document.querySelector(".js-head-button");
+
+      const tailButtonElement = document.querySelector(".js-tail-button");
+
+      let displayPara = document.querySelector(".js-para");
+      // displayPara.innerHTML = "hallo";
+      console.log(displayPara.innerHTML);
+
+      function choose(buttonValue) {
+        if (buttonValue === "Head") {
+          displayPara.innerHTML = `You choose Head!`;
+        } else {
+          displayPara.innerHTML = "You choose Tail!";
+        }
+      }
+    </script>
+  </body>
+</html>

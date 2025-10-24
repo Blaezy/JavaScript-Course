@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 9d</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <input class="js-input" type="text" placeholder="name" />
+    <button class="js-submit" onclick="submitButton();">Submit</button>
+    <p class="js-para"></p>
+
+    <script>
+      const inputElement = document.querySelector(".js-input");
+      const submitElement = document.querySelector(".js-submit");
+      let paraElement = document.querySelector(".js-para");
+
+      function submitButton() {
+        paraElement.innerHTML = `You name is ${inputElement.value}`;
+      }
+    </script>
+  </body>
+</html>

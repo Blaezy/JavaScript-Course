@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 9f</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      class="js-input"
+      type="text"
+      placeholder="name"
+      onkeydown="eventKey(event)"
+    />
+    <button class="js-submit" onclick="submitButton();">Submit</button>
+    <p class="js-para"></p>
+
+    <script>
+      const inputElement = document.querySelector(".js-input");
+      const submitElement = document.querySelector(".js-submit");
+      let paraElement = document.querySelector(".js-para");
+
+      function submitButton() {
+        paraElement.innerHTML = `You name is ${inputElement.value}`;
+      }
+
+      function eventKey(event) {
+        if (event.key === "Enter") {
+          submitButton();
+        }
+      }
+    </script>
+  </body>
+</html>

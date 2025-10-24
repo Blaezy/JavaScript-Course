@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 9h</title>
+    <style>
+      body {
+        background-color: #1e1e1e;
+      }
+      p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      class="js-input"
+      type="text"
+      placeholder="name"
+      onkeyup="eventKey(event)"
+    />
+    <p class="js-para"></p>
+
+    <script>
+      const inputElement = document.querySelector(".js-input");
+      let paraElement = document.querySelector(".js-para");
+
+      function eventKey(event) {
+        paraElement.innerHTML = inputElement.value;
+      }
+    </script>
+  </body>
+</html>
