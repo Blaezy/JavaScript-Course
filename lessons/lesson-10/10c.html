@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dom with css 10c</title>
+    <link rel="stylesheet" href="style/10c.css" />
+  </head>
+  <body>
+    <p class="title">Rock Paper Scissors</p>
+
+    <button onclick="playGame('Rock');" class="move-button" title="Rock">
+      <img class="move-image" src="../../images/rock-emoji.png" />
+    </button>
+
+    <button onclick="playGame('Paper');" class="move-button" title="Paper">
+      <img class="move-image" src="../../images/paper-emoji.png" />
+    </button>
+
+    <button
+      onclick="playGame('Scissors');"
+      class="move-button"
+      title="Scissors"
+    >
+      <img class="move-image" src="../../images/scissors-emoji.png" />
+    </button>
+
+    <p class="js-result result-para"></p>
+    <p class="js-moves moves-para"></p>
+
+    <p class="js-score score-para">
+      `Your Score: Wins: 0 , Losses: 0 , Tie: 0`
+    </p>
+
+    <button onclick="resetScore();" class="reset-button">Reset Score</button>
+
+    <script src="script/10c.js"></script>
+  </body>
+</html>
