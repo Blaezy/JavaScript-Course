@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice Calculator 10i</title>
+    <link rel="stylesheet" href="10i.css" />
+  </head>
+  <body>
+    <p class="title">Calculator</p>
+    <p class="js-calc-display"></p>
+
+    <div class="div-grid">
+      <div class="div-row">
+        <button class="calc-button" onclick="updatedCalculation('1');">
+          1
+        </button>
+        <button class="calc-button" onclick="updatedCalculation('2');">
+          2
+        </button>
+        <button class="calc-button" onclick="updatedCalculation('3');">
+          3
+        </button>
+        <button class="calc-button-special" onclick="updatedCalculation(' + ');">
+          +
+        </button>
+      </div>
+
+      <div class="div-row">
+        <button class="calc-button" onclick="updatedCalculation('4');">
+          4
+        </button>
+        <button class="calc-button" onclick="updatedCalculation('5');">
+          5
+        </button>
+        <button class="calc-button" onclick="updatedCalculation('6');">
+          6
+        </button>
+        <button class="calc-button-special" onclick="updatedCalculation(' - ');">
+          -
+        </button>
+      </div>
+
+      <div class="div-row">
+        <button class="calc-button" onclick="updatedCalculation('7');">
+          7
+        </button>
+        <button class="calc-button" onclick="updatedCalculation('8');">
+          8
+        </button>
+        <button class="calc-button" onclick="updatedCalculation('9');">
+          9
+        </button>
+        <button class="calc-button-special" onclick="updatedCalculation(' * ');">
+          *
+        </button>
+      </div>
+
+      <div class="div-row">
+        <button class="calc-button" onclick="special()">&#10070;</button>
+        <button class="calc-button" onclick="updatedCalculation('0');">
+          0
+        </button>
+        <button class="calc-button" onclick="updatedCalculation('.');">
+          .
+        </button>
+        <button class="calc-button-special" onclick="updatedCalculation(' / ');">
+          /
+        </button>
+      </div>
+    </div>
+
+    <button class="clear-button" onclick="clearLog();">Clear</button>
+    <button class="equal-button" onclick="equalButton();">=</button>
+
+    <script src="10i.js"></script>
+  </body>
+</html>

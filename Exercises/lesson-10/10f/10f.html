@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 10f</title>
+    <link rel="stylesheet" href="10f.css" />
+  </head>
+  <body>
+    <button class="js-gaming-button" onclick="switchToggle('.js-gaming-button')">
+      Gaming
+    </button>
+    <button class="js-music-button" onclick="switchToggle('.js-music-button')">
+      Music
+    </button>
+    <button class="js-tech-button" onclick="switchToggle('.js-tech-button')">
+      Tech
+    </button>
+    <button class="js-anime-button" onclick="switchToggle('.js-anime-button')">
+      Anime
+    </button>
+
+    <script src="10f.js"></script>
+  </body>
+</html>
+
+<!--   This is the Optimized Solution -->
+<!-- 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 10c</title>
+    <style>
+      .toggle-on-button {
+        background-color: rgb(230, 230, 230);
+        color: black;
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .toggle-off-button {
+        background-color: black;
+        color: rgb(230, 230, 230);
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toggle-on-button" onclick="toggle(this)">Gaming</button>
+    <button class="toggle-on-button" onclick="toggle(this)">Music</button>
+    <button class="toggle-on-button" onclick="toggle(this)">Tech</button>
+
+    <script>
+      function toggle(button) {
+        button.classList.toggle("toggle-on-button");
+        button.classList.toggle("toggle-off-button");
+      }
+    </script>
+  </body>
+</html>  -->

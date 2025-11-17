@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 10d</title>
+    <style>
+      .toggle-on-button {
+        background-color: rgb(230, 230, 230);
+        color: black;
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .toggle-off-button {
+        background-color: black;
+        color: rgb(230, 230, 230);
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="js-button" onclick="switchToggle()">Gaming</button>
+
+    <script>
+      const buttonElement = document.querySelector(".js-button");
+      buttonElement.classList.add("toggle-on-button");
+
+      function switchToggle() {
+        const istoggle = buttonElement.classList.contains("toggle-on-button");
+        console.log(istoggle);
+
+        if (istoggle) {
+          buttonElement.classList.add("toggle-off-button");
+          buttonElement.classList.remove("toggle-on-button");
+        } else {
+          buttonElement.classList.add("toggle-on-button");
+          buttonElement.classList.remove("toggle-off-button");
+        }
+      }
+    </script>
+  </body>
+</html>

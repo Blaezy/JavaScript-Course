@@ -1,0 +1,20 @@
+.toggle-on-button {
+  background-color: rgb(230, 230, 230);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.toggle-off-button {
+  background-color: black;
+  color: rgb(230, 230, 230);
+  padding: 10px 15px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}

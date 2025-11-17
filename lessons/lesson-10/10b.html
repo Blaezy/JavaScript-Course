@@ -14,10 +14,10 @@
         border: none;
         cursor: pointer;
       }
-      .cost-input{
+      .cost-input {
         padding: 10px;
       }
-      .cost-input:focus{
+      .cost-input:focus {
         outline-color: green;
       }
     </style>
@@ -27,10 +27,9 @@
     <p>Orders under $40 = +$10 shipping</p>
     <p>Orders over $40 = FREE shipping</p>
     <input
-      class = "cost-input"
+      class="cost-input js-input"
       type="number"
       placeholder="Cost of order"
-      class="js-input"
       onkeydown="inputKeyDown(event);"
     />
     <button class="calculate-button" onclick="costCalculate();">
@@ -43,6 +42,7 @@
       function costCalculate() {
         const inputElement = document.querySelector(".js-input");
         let cost = inputElement.value;
+        // console.log(cost);
         cost = cost * 100;
 
         if (cost < 4000) {

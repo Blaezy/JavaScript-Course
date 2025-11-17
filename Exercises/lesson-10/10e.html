@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 10e</title>
+    <style>
+      .toggle-on-button {
+        background-color: rgb(230, 230, 230);
+        color: black;
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .toggle-off-button {
+        background-color: black;
+        color: rgb(230, 230, 230);
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="js-gaming-button" onclick="switchToggleGaming()">
+      Gaming
+    </button>
+    <button class="js-music-button" onclick="switchToggleMusic()">Music</button>
+    <button class="js-tech-button" onclick="switchToggleTech()">Tech</button>
+
+    <script>
+      document.querySelector(".js-gaming-button").classList.add("toggle-on-button");
+      document.querySelector(".js-music-button").classList.add("toggle-on-button");
+      document.querySelector(".js-tech-button").classList.add("toggle-on-button");
+
+      function switchToggleGaming() {
+        const buttonElement = document.querySelector(".js-gaming-button");
+        const istoggle = buttonElement.classList.contains("toggle-on-button");
+        console.log(istoggle);
+
+        if (istoggle) {
+          buttonElement.classList.add("toggle-off-button");
+          buttonElement.classList.remove("toggle-on-button");
+        } else {
+          buttonElement.classList.add("toggle-on-button");
+          buttonElement.classList.remove("toggle-off-button");
+        }
+      }
+      function switchToggleMusic() {
+        const buttonElement = document.querySelector(".js-music-button");
+        const istoggle = buttonElement.classList.contains("toggle-on-button");
+        console.log(istoggle);
+
+        if (istoggle) {
+          buttonElement.classList.add("toggle-off-button");
+          buttonElement.classList.remove("toggle-on-button");
+        } else {
+          buttonElement.classList.add("toggle-on-button");
+          buttonElement.classList.remove("toggle-off-button");
+        }
+      }
+      function switchToggleTech() {
+        const buttonElement = document.querySelector(".js-tech-button");
+        const istoggle = buttonElement.classList.contains("toggle-on-button");
+        console.log(istoggle);
+
+        if (istoggle) {
+          buttonElement.classList.add("toggle-off-button");
+          buttonElement.classList.remove("toggle-on-button");
+        } else {
+          buttonElement.classList.add("toggle-on-button");
+          buttonElement.classList.remove("toggle-off-button");
+        }
+      }
+    </script>
+  </body>
+</html> 
+
+
+<!--   This is the Optimized Solution --> 
+<!-- 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 10c</title>
+    <style>
+      .toggle-on-button {
+        background-color: rgb(230, 230, 230);
+        color: black;
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .toggle-off-button {
+        background-color: black;
+        color: rgb(230, 230, 230);
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toggle-on-button" onclick="toggle(this)">Gaming</button>
+    <button class="toggle-on-button" onclick="toggle(this)">Music</button>
+    <button class="toggle-on-button" onclick="toggle(this)">Tech</button>
+
+    <script>
+      function toggle(button) {
+        button.classList.toggle("toggle-on-button");
+        button.classList.toggle("toggle-off-button");
+      }
+    </script>
+  </body>
+</html>  -->
