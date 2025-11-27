@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11c</title>
+  </head>
+  <body>
+    <script>
+      const num = [1, 2, 3, 444];
+      const days = ["monday", "tuesday", "wednesday"];
+
+      function valueSwap(arr) {
+        const temp = arr[0];
+        arr[0] = arr[arr.length - 1];
+        arr[arr.length - 1] = temp;
+      }
+      valueSwap(num);
+      valueSwap(days);
+
+      console.log(num);
+      console.log(days);
+    </script>
+  </body>
+</html>

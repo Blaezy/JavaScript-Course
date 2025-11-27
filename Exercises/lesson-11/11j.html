@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11j</title>
+  </head>
+  <body>
+    <script>
+      const num1 = [2, 4, 5, 7, 8, 10, 12];
+      const num2 = [20, 40, -50, 70, -8];
+
+      function addArrays(arr1, arr2) {
+        const sumArray = [];
+        let i = 0;
+        while (i < arr1.length || i < arr2.length) {
+          if (arr1[i] != null && arr2[i] != null) {
+            sumArray.push(arr1[i] + arr2[i]);
+          } else if (arr1[i] != null) {
+            sumArray.push(arr1[i]);
+            console.log("I'm arr1");
+          } else if (arr2[i] != null) {
+            sumArray.push(arr2[i]);
+            console.log("I'm arr2");
+          }
+          i++;
+        }
+        return sumArray;
+      }
+      console.log(addArrays(num1, num2));
+    </script>
+  </body>
+</html>

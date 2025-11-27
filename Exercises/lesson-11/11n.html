@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11n</title>
+  </head>
+  <body>
+    <script>
+      const word1 = ["apple", "boy", "cat", "apple", "apple", "cat"];
+      const word2 = ["dinner", "burger", "dog", "dinner", "burger", "dog"];
+      const num1 = [2, 1, 2, 3, 3, 2, 1, 5];
+
+      function countWords(str) {
+        const totalWords = {};
+        let i = 0;
+
+        while (i < str.length) {
+          let key = str[i]; // key is the property
+          if (totalWords.hasOwnProperty(key)) {
+            totalWords[key] += 1;
+          } else {
+            totalWords[key] = 1;
+          }
+          i++;
+        }
+        return totalWords;
+      }
+
+      console.log(countWords(word1));
+    </script>
+  </body>
+</html>
