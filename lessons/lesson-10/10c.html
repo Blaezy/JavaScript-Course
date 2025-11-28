@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dom with css 10c</title>
+    <title>Rock Paper Scissors</title>
+    <link rel="icon" href="../../images/rock-emoji.png" />
     <link rel="stylesheet" href="style/10c.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Solitreo&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <p class="title">Rock Paper Scissors</p>
+    <div class="main-page">
+      <div class="sub-page">
+        <p class="title">Rock Paper Scissors</p>
 
-    <button onclick="playGame('Rock');" class="move-button" title="Rock">
-      <img class="move-image" src="../../images/rock-emoji.png" />
-    </button>
+        <button onclick="playGame('Rock');" class="move-button" title="Rock">
+          <img class="move-image" src="../../images/rock-emoji.png" />
+        </button>
 
-    <button onclick="playGame('Paper');" class="move-button" title="Paper">
-      <img class="move-image" src="../../images/paper-emoji.png" />
-    </button>
+        <button onclick="playGame('Paper');" class="move-button" title="Paper">
+          <img class="move-image" src="../../images/paper-emoji.png" />
+        </button>
 
-    <button
-      onclick="playGame('Scissors');"
-      class="move-button"
-      title="Scissors"
-    >
-      <img class="move-image" src="../../images/scissors-emoji.png" />
-    </button>
+        <button
+          onclick="playGame('Scissors');"
+          class="move-button"
+          title="Scissors"
+        >
+          <img class="move-image" src="../../images/scissors-emoji.png" />
+        </button>
 
-    <p class="js-result result-para"></p>
-    <p class="js-moves moves-para"></p>
+        <p class="js-result result-para"></p>
+        <p class="js-moves moves-para"></p>
 
-    <p class="js-score score-para">
-      `Your Score: Wins: 0 , Losses: 0 , Tie: 0`
-    </p>
+        <p class="js-score score-para">
+          `Your Score: Wins: 0 , Losses: 0 , Tie: 0`
+        </p>
 
-    <button onclick="resetScore();" class="reset-button">Reset Score</button>
+        <button onclick="resetScore();" class="reset-button">
+          Reset Score
+        </button>
+      </div>
+    </div>
 
     <script src="script/10c.js"></script>
   </body>

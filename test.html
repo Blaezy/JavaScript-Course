@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculator</title>
+  <style>
+    :root{
+      --bg: #0f1724;
+      --panel: #0b1220;
+      --accent: #7c3aed;
+      --accent-2: #06b6d4;
+      --card: #0b1622;
+      --glass: rgba(255,255,255,0.04);
+      --text: #e6eef8;
+      --muted: #9fb3c8;
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #071026 100%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .calculator {
+      width: min(420px, 94vw);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 8px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      padding: 20px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    /* header */
+    .calc-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .title {
+      font-weight:700;
+      letter-spacing: -0.3px;
+      font-size: 18px;
+      color: var(--text);
+    }
+    .sub {
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* display */
+    .display {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-height:84px;
+      box-shadow: inset 0 -6px 18px rgba(2,6,23,0.4);
+    }
+    .small {
+      font-size:13px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .big {
+      font-size:30px;
+      font-weight:600;
+      text-align:right;
+      color:var(--text);
+      word-break:break-all;
+    }
+
+    /* keypad */
+    .keys {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+
+    button.key {
+      background: var(--glass);
+      color:var(--text);
+      border: none;
+      padding: 14px;
+      font-size:18px;
+      border-radius:10px;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s;
+      box-shadow: 0 4px 10px rgba(2,6,23,0.4);
+      user-select:none;
+    }
+    button.key:active { transform: translateY(2px) scale(.997); }
+
+    /* special styles */
+    .key.op {
+      background: linear-gradient(180deg, rgba(124,58,237,0.14), rgba(124,58,237,0.08));
+      color: white;
+      box-shadow: 0 6px 18px rgba(124,58,237,0.12);
+    }
+    .key.equal {
+      grid-column: span 2;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color: white;
+      font-weight:700;
+      font-size:18px;
+      box-shadow: 0 10px 30px rgba(7,15,35,0.5);
+    }
+    .key.span-2 { grid-column: span 2; }
+
+    /* small screens */
+    @media (max-width:380px){
+      .big{font-size:24px;}
+      button.key{padding:12px; font-size:16px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator" role="application" aria-label="Calculator">
+    <div class="calc-header">
+      <div>
+        <div class="title">Calculator</div>
+        <div class="sub">Basic math • Keyboard supported</div>
+      </div>
+      <div class="sub" id="kbdHint">Type: 0-9 + - * / ( ) . Enter= = Backspace=←</div>
+    </div>
+
+    <div class="display" aria-live="polite">
+      <div class="small" id="expr">0</div>
+      <div class="big" id="result">0</div>
+    </div>
+
+    <div class="keys" role="grid" aria-label="Calculator keys">
+      <button class="key" data-action="clear">C</button>
+      <button class="key" data-action="back">⌫</button>
+      <button class="key" data-action="plusminus">±</button>
+      <button class="key op" data-key="/">÷</button>
+
+      <button class="key" data-key="7">7</button>
+      <button class="key" data-key="8">8</button>
+      <button class="key" data-key="9">9</button>
+      <button class="key op" data-key="*">×</button>
+
+      <button class="key" data-key="4">4</button>
+      <button class="key" data-key="5">5</button>
+      <button class="key" data-key="6">6</button>
+      <button class="key op" data-key="-">−</button>
+
+      <button class="key" data-key="1">1</button>
+      <button class="key" data-key="2">2</button>
+      <button class="key" data-key="3">3</button>
+      <button class="key op" data-key="+">+</button>
+
+      <button class="key span-2" data-key="0">0</button>
+      <button class="key" data-key=".">.</button>
+      <button class="key equal" data-action="equals">=</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const exprEl = document.getElementById('expr');
+      const resultEl = document.getElementById('result');
+      const keys = document.querySelectorAll('.key');
+
+      let expression = '';    // user visible expression (uses standard symbols for eval)
+      let displayExpr = '';   // nicer presentation (optional)
+
+      // helper: sanitize expression before eval (allow digits, spaces, operators, parentheses, dot)
+      function isSafeExpression(e){
+        // replace unicode division/multiply/minus symbols with ascii for eval
+        const normalized = e.replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g,'-').trim();
+        // allow digits, whitespace, + - * / ( ) . only
+        return /^[0-9+\-*/().\s]+$/.test(normalized);
+      }
+
+      function safeEval(e) {
+        const normalized = e.replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g,'-').trim();
+        if (!isSafeExpression(normalized)) throw new Error('Unsafe expression');
+        // Using Function here to evaluate; input validated above
+        // Use parentheses to avoid weird automatic semicolon insertion issues
+        return Function('"use strict";return (' + normalized + ')')();
+      }
+
+      function updateDisplay(){
+        exprEl.textContent = expression === '' ? '0' : expression;
+        try {
+          if (expression === '' || /[+\-*/]$/.test(expression)) {
+            // if ends with operator, don't eval the trailing operator
+            const safe = expression.replace(/[+\-*/]+$/,'');
+            if (safe === '') {
+              resultEl.textContent = '0';
+            } else if (isSafeExpression(safe)) {
+              const val = safeEval(safe);
+              resultEl.textContent = String(val);
+            } else {
+              resultEl.textContent = '-';
+            }
+          } else {
+            if (isSafeExpression(expression)) {
+              const val = safeEval(expression);
+              resultEl.textContent = String(val);
+            } else {
+              resultEl.textContent = '-';
+            }
+          }
+        } catch (err) {
+          resultEl.textContent = 'Error';
+        }
+      }
+
+      function appendChar(ch){
+        // replace display-friendly symbols with ascii operators
+        if (ch === '÷' || ch === '×' || ch === '−') {
+          ch = (ch === '÷') ? '/' : (ch === '×' ? '*' : '-');
+        }
+        // prevent two dots in same number: simple approach - last number segment
+        if (ch === '.') {
+          const parts = expression.split(/[\+\-\*\/\(\)]/);
+          const last = parts[parts.length-1];
+          if (last.includes('.')) return;
+        }
+        // avoid starting expression with an operator except minus
+        if (expression === '' && /[+\*\/]/.test(ch)) return;
+
+        // compact repeated operators: allow minus after operator (for negative)
+        if (/[+\-*/]/.test(ch) && /[+\-*/]$/.test(expression)) {
+          // if user types "-" after an operator and not already operator-, allow it (e.g. 5 * -3)
+          if (ch === '-' && !/[-]{1}$/.test(expression)) {
+            expression += ch;
+          } else {
+            // replace last operator(s) with new one
+            expression = expression.replace(/[+\-*/]+$/,'') + ch;
+          }
+        } else {
+          expression += ch;
+        }
+        updateDisplay();
+      }
+
+      function backspace(){
+        if (expression.length === 0) return;
+        expression = expression.slice(0,-1);
+        updateDisplay();
+      }
+
+      function clearAll(){
+        expression = '';
+        updateDisplay();
+      }
+
+      function calculate(){
+        try {
+          if (!isSafeExpression(expression)) { resultEl.textContent = 'Error'; return; }
+          const val = safeEval(expression);
+          // format result: if integer show integer else round to 8 decimals removing trailing zeros
+          const out = Number.isFinite(val) ? (Number.isInteger(val) ? String(val) : Number(val.toFixed(8)).toString()) : 'Error';
+          expression = String(out);
+          updateDisplay();
+        } catch (err) {
+          resultEl.textContent = 'Error';
+        }
+      }
+
+      function togglePlusMinus(){
+        // toggle sign of last number: find last number token and flip sign
+        // a simple but effective approach:
+        // If expression ends with a number, wrap it in (...*-1) or replace leading -...
+        const parts = expression.split(/([+\-*/])/).filter(Boolean);
+        if (parts.length === 0) return;
+        let last = parts[parts.length-1];
+        if (/^[+\-*/]$/.test(last)) return;
+        // remove last token from expression
+        parts.pop();
+        // toggle sign for last
+        if (last.startsWith('-')) {
+          last = last.slice(1);
+        } else {
+          last = '-' + last;
+        }
+        expression = parts.join('') + last;
+        updateDisplay();
+      }
+
+      keys.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const key = btn.dataset.key;
+          const action = btn.dataset.action;
+          if (action === 'clear') return clearAll();
+          if (action === 'back') return backspace();
+          if (action === 'equals') return calculate();
+          if (action === 'plusminus') return togglePlusMinus();
+          if (key) return appendChar(key);
+        });
+      });
+
+      // keyboard support
+      window.addEventListener('keydown', (ev)=>{
+        // ignore when using input fields (if you later add any)
+        if (ev.target && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')) return;
+        const k = ev.key;
+        if ((/^[0-9]$/).test(k)) { appendChar(k); ev.preventDefault(); return; }
+        if (k === '.' || k === ',') { appendChar('.'); ev.preventDefault(); return; }
+        if (k === '+' || k === '-' || k === '*' || k === '/' || k === '(' || k === ')') { appendChar(k); ev.preventDefault(); return; }
+        if (k === 'Enter' || k === '=') { calculate(); ev.preventDefault(); return; }
+        if (k === 'Backspace') { backspace(); ev.preventDefault(); return; }
+        if (k.toLowerCase() === 'c') { clearAll(); return; }
+      });
+
+      // initial render
+      updateDisplay();
+    })();
+  </script>
+</body>
+</html>
