@@ -1,20 +1,30 @@
 console.log("everything fine!");
 
-const TodoList = [
-  { taskName: "make dinner", taskDate: "2025-11-29", isBox: false },
-  { taskName: "go for walk", taskDate: "2025-11-29", isBox: false },
-  { taskName: "watch the VCT", taskDate: "2025-11-29", isBox: true },
-];
+let TodoList = [];
 
 // display the task in webPage
 
+defaultDate();
+addTodoList();
 function addTodoList() {
+  let desInput = document.querySelector(".description");
+  let deleteAllElement = document.querySelector(".delete-all-button");
+
+  if (TodoList.length === 0) {
+    desInput.innerHTML = `Type something in 'Todo input' and press enter or click Add`;
+    deleteAllElement.classList.add("delete-all-button-opacity");
+  } else {
+    desInput.innerHTML = ``;
+    deleteAllElement.classList.remove("delete-all-button-opacity");
+  }
+
   let todoListElement = document.querySelector(".js-todolist");
   todoListElement.innerHTML = "";
 
-  for (let i = 0; i < TodoList.length; i++) {
-    const task = TodoList[i];
-    let taskHTML = `
+  if (TodoList.length > 0) {
+    for (let i = 0; i < TodoList.length; i++) {
+      const task = TodoList[i];
+      let taskHTML = `
     <div class="new-task-js" >
       <input type="checkbox" name="tasks" class="task-checkbox-js-${i} task-checkbox" onclick="updateCheckbox();allInOne();">
       <div class="taskname-js-${i} taskname">${task.taskName}</div>
@@ -22,7 +32,8 @@ function addTodoList() {
       <button class="delete-button" onclick="TodoList.splice(${i},1);addTodoList();allInOne();">Delete</button>
     </div>
     `;
-    todoListElement.innerHTML += taskHTML;
+      todoListElement.innerHTML += taskHTML;
+    }
   }
 }
 
@@ -59,6 +70,7 @@ function updateCheckbox() {
   }
 }
 
+// updating the isbox display
 function updateCheckboxDisplay() {
   for (let i = 0; i < TodoList.length; i++) {
     let newClassName = `.task-checkbox-js-${i}`;
@@ -68,6 +80,7 @@ function updateCheckboxDisplay() {
     box.checked = taskObject.isBox;
   }
 }
+// creating the line through effect
 function makeMiddleLine() {
   for (let i = 0; i < TodoList.length; i++) {
     let newClassName = `.taskname-js-${i}`;
@@ -87,6 +100,7 @@ function printConsole() {
   console.log(TodoList);
 }
 
+// calculating the percentage of checkbox
 function calculatePercentage() {
   let Total_task = TodoList.length;
   let current_task = 0;
@@ -96,18 +110,40 @@ function calculatePercentage() {
       current_task++;
     }
   }
-  const result = (current_task / Total_task) * 100;
-  const result_display = `${Math.floor(result)}%`;
+
+  let result_display;
+  if (Total_task > 0) {
+    const result = (current_task / Total_task) * 100;
+    result_display = `${Math.floor(result)}%`;
+  } else {
+    result_display = `%`;
+  }
 
   const buttonElement = document.querySelector(".result-button-js");
   buttonElement.innerHTML = result_display;
 }
 
-function allInOne(){
+function deletingAll() {
+  TodoList = [];
+  addTodoList();
+  calculatePercentage();
+}
+
+function allInOne() {
   updateCheckboxDisplay();
   makeMiddleLine();
   calculatePercentage();
 }
 
+function inputKeyDown(event) {
+  if (event.key === "Enter") {
+    getInputbutton();
+  }
+}
+
+function defaultDate() {
+  const today = new Date().toISOString().split("T")[0];
+  document.querySelector(".date-input-js").value = today;
+}
 
 // TODO: Add Local save in the page
