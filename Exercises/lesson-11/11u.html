@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11u</title>
+  </head>
+  <body>
+    <script>
+      const str1 = ["egg", "apple", "banana", "egg", "orange", "egg", "gg"];
+      const str2 = ["not", "found", "money"];
+
+      function removeEgg(arr) {
+        const reverseArr = arr.slice();
+        reverseArr.reverse();
+        const updatedArr = [];
+
+        let cnt = 0;
+        for (let i = 0; i < reverseArr.length; i++) {
+          if (reverseArr[i] === "egg") {
+            cnt++;
+          }
+          if (reverseArr[i] !== "egg" || cnt > 2) {
+            updatedArr.push(reverseArr[i]);
+          }
+        }
+        return updatedArr.reverse();
+      }
+      console.log("original arr: ", str1);
+      console.log("removed egg: ", removeEgg(str1));
+    </script>
+  </body>
+</html>

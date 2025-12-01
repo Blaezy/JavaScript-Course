@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11s</title>
+  </head>
+  <body>
+    <script>
+      const str1 = ["egg", "apple", "banana", "kela", "orange","egg","gg"];
+      const str2 = ["not", "found", "money"];
+
+      function removeEgg(arr) {
+        const updatedArr = [];
+        let cnt = 0;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] === "egg") {
+            cnt++;
+          }
+          if(arr[i] !== "egg" || cnt > 2){
+            updatedArr.push(arr[i]);
+          }
+        }
+        return updatedArr;
+      }
+
+      console.log("removed egg: ",removeEgg(str1));
+    </script>
+  </body>
+</html>

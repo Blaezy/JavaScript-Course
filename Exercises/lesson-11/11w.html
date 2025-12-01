@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11w</title>
+  </head>
+  <body>
+    <script>
+      const str1 = ["red", "green", "green", "red", "green"];
+      const str2 = ["not", "found", "money"];
+
+      function findIndex(arr, word) {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] === word) {
+            return i;
+          }
+        }
+        return -1;
+      }
+
+      function Unique(arr){
+        const newArr = [];
+        for(let i=0; i<arr.length;i++){
+
+            let present = findIndex(newArr,arr[i]);
+
+            if(present === -1){
+                newArr.push(arr[i]);
+            }
+        }
+        return newArr;
+      }
+
+      console.log("Unique is: ",Unique(str1));
+    </script>
+  </body>
+</html>

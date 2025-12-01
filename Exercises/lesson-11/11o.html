@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11o</title>
+  </head>
+  <body>
+    <script>
+      const str1 = ["hello", "world", "search", "good"];
+      const str2 = ["not", "found", "money"];
+
+      for (let i = 0; i < str2.length; i++) {
+        if (str2[i] === "search") {
+          console.log(i);
+          break;
+        }
+        if (i === str2.length - 1) {
+          console.log(-1);
+        }
+      }
+    </script>
+  </body>
+</html>

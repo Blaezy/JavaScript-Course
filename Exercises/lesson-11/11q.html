@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11q</title>
+  </head>
+  <body>
+    <script>
+      const str1 = ["green", "yellow", "blue", "red", "orange"];
+      const str2 = ["not", "found", "money"];
+
+      function findIndex(arr, word) {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] === word) {
+            return i;
+          }
+        }
+        return -1;
+      }
+
+      console.log("index is: ",findIndex(str1,"voilet"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 11r</title>
+  </head>
+  <body>
+    <script>
+      const str1 = ["egg", "apple", "egg", "egg", "orange"];
+      const str2 = ["not", "found", "money"];
+
+      function removeEgg(arr) {
+        const updatedArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] !== "egg") {
+            updatedArr.push(arr[i]);
+          }
+        }
+        return updatedArr;
+      }
+
+      console.log("removed egg: ",removeEgg(str1));
+    </script>
+  </body>
+</html>
