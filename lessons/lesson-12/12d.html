@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todo List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div class="title-block">
+          <h1>Todo List</h1>
+          <p>Plan it. Check it off. Keep it clean.</p>
+        </div>
+
+        <div class="progress">
+          <div>
+            <div class="progress-label">Completed</div>
+            <div class="progress-bar">
+              <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+          </div>
+          <div class="progress-value" id="progress-value">0%</div>
+        </div>
+      </header>
+
+      <section class="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          class="input"
+          placeholder="What do you need to get done?"
+        />
+        <input type="date" id="date-input" class="date-input" />
+        <button class="btn btn-primary" id="add-btn">Add task</button>
+      </section>
+
+      <section class="todo-list-container">
+        <ul id="todo-list" class="todo-list"></ul>
+        <div id="empty-state" class="todo-empty">
+          No tasks yet. Add something to get started.
+        </div>
+      </section>
+
+      <footer class="app-footer">
+        <div class="summary">
+          <span id="summary-count">0</span> tasks •
+          <span id="summary-done">0</span> done
+        </div>
+        <button class="btn btn-danger-ghost" id="delete-all-btn">
+          Delete all
+        </button>
+        <i class="fa-solid fa-house"></i>
+      </footer>
+    </main>
+  </body>
+</html>

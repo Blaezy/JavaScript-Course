@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "austere";
+  src: url(../../fonts/Austere\ .ttf);
+}
+body {
+  background-color: #1e1e1e;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 15px;
+}
+.title {
+  font-family: "austere", sans-serif;
+  font-size: 30px;
+} 
+.move-button {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  border: 3px solid white;
+  padding: 10px;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.15s;
+}
+.move-image {
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+.move-button:hover {
+  transform: scale(1.1);
+}
+title {
+  background-color: gray;
+  color: pink;
+  border: 2px solid white;
+  border-radius: 4px;
+}
+.result-para {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 30px;
+}
+.moves-para,
+.score-para {
+  font-weight: bold;
+}
+.reset-button,.auto-play-button {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: rgb(240, 240, 240);
+  border: none;
+  border-radius: 5px;
+  color: #1e1e1e;
+  cursor: pointer;
+  transition: transform 0.05s;
+  margin-right: 5px;
+}
+.auto-play-button-active{
+  background-color: green;
+  color: white;
+}
+.reset-button:active ,.auto-play-button:active{
+  transform: scale(0.95);
+}
+.reset-button:hover{
+  background-color: rgb(255, 255, 255);
+}
+.moves-image {
+  height: 50px;
+}
