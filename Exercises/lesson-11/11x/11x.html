@@ -7,30 +7,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Solitreo&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <p class="page-title">Todo List</p>
-    <div class="new-task-html">
-      <button class="result-button-js result-button" onclick="printConsole()">
-        %
+    <div class="todo-container">
+      <p class="page-title">Todo List</p>
+      <div class="new-task-html">
+        <button class="result-button-js result-button" onclick="printConsole()">
+          %
+        </button>
+        <input
+          type="text"
+          placeholder="Todo name"
+          class="todo-input-js task-input"
+          onkeydown="inputKeyDown(event);"
+        />
+        <input type="date" class="date-input-js date-input" />
+        <button class="button-js add-button" onclick="getInputbutton()">
+          Add
+        </button>
+        <div class="js-todolist"></div>
+      </div>
+      <p class="description">No tasks yet. Add something to get started.</p>
+      <button class="delete-all-button" onclick="deletingAll();">
+        Delete All
       </button>
-      <input
-        type="text"
-        placeholder="Todo name"
-        class="todo-input-js task-input"
-        onkeydown="inputKeyDown(event);"
-      />
-      <input type="date" class="date-input-js date-input" />
-      <button class="button-js add-button" onclick="getInputbutton()">
-        Add
-      </button>
-      <div class="js-todolist"></div>
     </div>
-    <button class="delete-all-button " onclick="deletingAll();">Delete All</button>
-    <p class="description">Type something in 'Todo input' and press enter or click Add</p>
 
     <script src="11x.js"></script>
   </body>

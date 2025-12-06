@@ -1,5 +1,6 @@
 body{
-  font-family: "Solitreo", cursive;
+  font-family: "Patrick Hand", cursive;
+  letter-spacing: 1px;
   background-color: #1e1e1e;
   color: white;
 }
@@ -9,8 +10,7 @@ body{
     font-size: 50px;
     padding: 0px;
     margin: 0px;
-    margin-bottom: 0px;
-    margin-left: 150px;
+    margin-bottom: 10px;
 }
 .new-task-js,
 .new-task-html {
@@ -84,4 +84,11 @@ body{
 
 .description{
     margin-left: 35px;
+    text-align: center;
+}
+.todo-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -15,13 +15,13 @@ defaultDate();
 addTodoList();
 allInOne();
 
-// task display 
+// task display
 function addTodoList() {
   let desInput = document.querySelector(".description");
   let deleteAllElement = document.querySelector(".delete-all-button");
 
   if (TodoList.length === 0) {
-    desInput.innerHTML = `Type something in 'Todo input' and press enter or click Add`;
+    desInput.innerHTML = `No tasks yet. Add something to get started.`;
     deleteAllElement.classList.add("delete-all-button-opacity");
   } else {
     desInput.innerHTML = ``;
@@ -32,18 +32,18 @@ function addTodoList() {
   todoListElement.innerHTML = "";
 
   if (TodoList) {
-    for (let i = 0; i < TodoList.length; i++) {
-      const task = TodoList[i];
+    TodoList.forEach(function (value, index) {
+      // const task = TodoList[index];
       let taskHTML = `
     <div class="new-task-js" >
-      <input type="checkbox" name="tasks" class="task-checkbox-js-${i} task-checkbox" onclick="updateCheckbox();allInOne();">
-      <div class="taskname-js-${i} taskname">${task.taskName}</div>
-      <div>${task.taskDate}</div>
-      <button class="delete-button" onclick="TodoList.splice(${i},1);addTodoList();allInOne();">Delete</button>
+      <input type="checkbox" name="tasks" class="task-checkbox-js-${index} task-checkbox" onclick="updateCheckbox();allInOne();">
+      <div class="taskname-js-${index} taskname">${value.taskName}</div>
+      <div>${value.taskDate}</div>
+      <button class="delete-button" onclick="TodoList.splice(${index},1);addTodoList();allInOne();">Delete</button>
     </div>
     `;
       todoListElement.innerHTML += taskHTML;
-    }
+    });
   }
 }
 
