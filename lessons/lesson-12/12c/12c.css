@@ -1,16 +1,15 @@
-@font-face {
-  font-family: "austere";
-  src: url(../../fonts/Austere\ .ttf);
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
   background-color: #1e1e1e;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   margin-left: 15px;
 }
 .title {
-  font-family: "austere", sans-serif;
-  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
+  font-weight: 900;
 } 
 .move-button {
   background-color: transparent;

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 12e</title>
+    </head>
+    <body>
+
+        <button class="add-button-js" onclick="startTime();">Add to Cart</button>
+        <p class="display-para-js"></p>
+
+        <script>
+            const buttonElement = document.querySelector(".display-para-js");
+
+            
+            const removeText = function(){buttonElement.innerHTML = "";}
+
+            function startTime(){
+                buttonElement.innerHTML = "Added";
+                setTimeout(removeText,2000);
+            }
+
+        </script>
+    </body>
+</html>

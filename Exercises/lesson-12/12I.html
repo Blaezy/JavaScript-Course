@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 12i</title>
+  </head>
+  <body>
+    <button onclick="startButton();">start</button>
+    <button onclick="stopButton();">stop</button>
+    <button onclick="num++;">Add</button>
+    <button onclick="num--">Remove</button>
+    <script>
+      let intervalID;
+      let num = 2;
+
+      function startButton() {
+        const changeTitle = function () {
+          if (num > 0) document.title = `(${num}) New Message`;
+          else document.title = "Exercise 12i";
+        };
+        intervalID = setInterval(changeTitle, 1000);
+      }
+
+      function stopButton() {
+        clearInterval(intervalID);
+        document.title = "stoped";
+      }
+    </script>
+  </body>
+</html>

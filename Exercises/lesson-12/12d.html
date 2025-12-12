@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 12d</title>
+    </head>
+    <body>
+
+        <button class="start-button-js" onclick="startTime();">Start!</button>
+
+        <script>
+            const buttonElement = document.querySelector(".start-button-js");
+
+            const changeText = function(){buttonElement.innerHTML = "Finished!";}
+
+            function startTime(){
+                setTimeout(changeText,1000);
+                buttonElement.innerHTML = "Loading...";
+            }
+
+        </script>
+    </body>
+</html>

@@ -16,6 +16,25 @@ let scoreCount = savedScore || {
 
 console.log(scoreCount);
 
+document.querySelector(".js-rock-button").addEventListener("click",()=>{playGame('Rock');});
+document.querySelector(".js-paper-button").addEventListener("click",()=>{playGame('Paper');});
+document.querySelector(".js-scissor-button").addEventListener("click",()=>{playGame('Scissors');});
+
+document.querySelector(".js-reset-button").addEventListener("click",resetScore);
+document.querySelector(".js-autoplay-button").addEventListener("click",autoPlay);
+
+document.body.addEventListener("keydown",(Event)=>{
+  console.log(Event.key);
+
+  if(Event.key === 'r'){
+    playGame('Rock');
+  } else if ( Event.key === 'p'){
+    playGame('Paper');
+  } else if(Event.key === 's'){
+    playGame('Scissors');
+  }
+})
+
 function scoreDisplay() {
   const scoreElement = document.querySelector(".js-score");
   scoreElement.innerHTML = `Your Score: Wins: ${scoreCount.Wins} , Losses: ${scoreCount.Losses} , Tie: ${scoreCount.Tie}`;
@@ -29,7 +48,7 @@ let intervalID;
 
 function autoPlay() {
   if (!isAutoPlay) {
-    intervalID = setInterval(function () {
+    intervalID = setInterval( () => {
       const playerMove = randomMoves();
       playGame(playerMove);
     }, 1000);

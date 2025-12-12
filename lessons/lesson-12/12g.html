@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lesson 12g</title>
+  </head>
+  <body>
+    <button class="click-button-js">click me</button>
+
+    <script>
+      const buttonElement = document.querySelector(".click-button-js");
+
+      const fun = () => console.log("click me worked");
+      buttonElement.addEventListener("click", fun);
+
+      buttonElement.removeEventListener("click", fun);
+
+      buttonElement.addEventListener("copy", () => {
+        console.log("copied the button");
+      });
+
+
+
+      
+    </script>
+  </body>
+</html>
