@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   background-color: #1e1e1e;
@@ -10,7 +10,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 40px;
   font-weight: 900;
-} 
+}
 .move-button {
   background-color: transparent;
   border: none;
@@ -46,7 +46,8 @@ title {
 .score-para {
   font-weight: bold;
 }
-.reset-button,.auto-play-button {
+.reset-button,
+.auto-play-button {
   padding: 10px 15px;
   font-weight: bold;
   font-size: 16px;
@@ -58,16 +59,59 @@ title {
   transition: transform 0.05s;
   margin-right: 5px;
 }
-.auto-play-button-active{
+.auto-play-button {
   background-color: green;
   color: white;
 }
-.reset-button:active ,.auto-play-button:active{
+.auto-play-button-active {
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+}
+.reset-button:active,
+.auto-play-button:active {
   transform: scale(0.95);
 }
-.reset-button:hover{
+.reset-button:hover {
   background-color: rgb(255, 255, 255);
 }
 .moves-image {
   height: 50px;
 }
+
+.main-page {
+  display: flex;
+  justify-content: center;
+}
+
+.warning-title-div{
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.warning-title-button-yes,.warning-title-button-no{
+  font-size: 16px;
+  margin-left: 5px;
+  padding: 8px 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor:pointer;
+}
+
+.warning-title-button-yes:hover{
+  background-color: green;
+  color: white;
+}
+.warning-title-button-no:hover{
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+}
+
+.warning-title-button-yes:active,.warning-title-button-no:active{
+  transform: scale(0.9);
+}
+
+.warning-title-div-opacity{
+  opacity: 0;
+}
+

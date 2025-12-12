@@ -5,29 +5,38 @@
     <link rel="stylesheet" href="12c.css" />
   </head>
   <body>
-    <p class="title">Rock Paper Scissors</p>
+    <div class="main-page">
+      <div>
+        <p class="title">Rock Paper Scissors</p>
 
-    <button class="move-button js-rock-button" title="Rock">
-      <img class="move-image" src="../../../images/rock-emoji.png" />
-    </button>
+        <button class="move-button js-rock-button" title="Rock">
+          <img class="move-image" src="../../../images/rock-emoji.png" />
+        </button>
 
-    <button class="move-button js-paper-button" title="Paper">
-      <img class="move-image" src="../../../images/paper-emoji.png" />
-    </button>
+        <button class="move-button js-paper-button" title="Paper">
+          <img class="move-image" src="../../../images/paper-emoji.png" />
+        </button>
 
-    <button class="move-button js-scissor-button" title="Scissors">
-      <img class="move-image" src="../../../images/scissors-emoji.png" />
-    </button>
+        <button class="move-button js-scissor-button" title="Scissors">
+          <img class="move-image" src="../../../images/scissors-emoji.png" />
+        </button>
 
-    <p class="js-result result-para"></p>
-    <p class="js-moves moves-para"></p>
+        <p class="js-result result-para"></p>
+        <p class="js-moves moves-para"></p>
 
-    <p class="js-score score-para">
-      `Your Score: Wins: 0 , Losses: 0 , Tie: 0`
-    </p>
+        <p class="js-score score-para">
+          `Your Score: Wins: 0 , Losses: 0 , Tie: 0`
+        </p>
 
-    <button class="reset-button js-reset-button">Reset Score</button>
-    <button class="auto-play-button js-autoplay-button">Auto Play</button>
+        <button class="reset-button js-reset-button">Reset Score</button>
+        <button class="auto-play-button js-autoplay-button ">Auto Play</button>
+        <div class="warning-title-div warning-title-js warning-title-div-opacity">
+          <span class="warning-title">Are you sure want to reset the score ?</span>
+          <button class="warning-title-button-yes">Yes</button>
+          <button class="warning-title-button-no">No</button>
+        </div>
+      </div>
+    </div>
 
     <script src="12c.js"></script>
   </body>

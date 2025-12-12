@@ -1,6 +1,6 @@
-console.log("hellooooo");
+// console.log("hellooooo");
 
-console.log("local" + localStorage.getItem("scoreCount"));
+// console.log("local" + localStorage.getItem("scoreCount"));
 
 let savedScore = JSON.parse(localStorage.getItem("scoreCount"));
 
@@ -14,27 +14,66 @@ let scoreCount = savedScore || {
   Tie: 0,
 };
 
-console.log(scoreCount);
+// console.log(scoreCount);
 
-document.querySelector(".js-rock-button").addEventListener("click",()=>{playGame('Rock');});
-document.querySelector(".js-paper-button").addEventListener("click",()=>{playGame('Paper');});
-document.querySelector(".js-scissor-button").addEventListener("click",()=>{playGame('Scissors');});
 
-document.querySelector(".js-reset-button").addEventListener("click",resetScore);
-document.querySelector(".js-autoplay-button").addEventListener("click",autoPlay);
+document.querySelector(".js-rock-button").addEventListener("click", () => {
+  playGame("Rock");
+});
+document.querySelector(".js-paper-button").addEventListener("click", () => {
+  playGame("Paper");
+});
+document.querySelector(".js-scissor-button").addEventListener("click", () => {
+  playGame("Scissors");
+});
 
-document.body.addEventListener("keydown",(Event)=>{
-  console.log(Event.key);
+document
+  .querySelector(".js-reset-button")
+  .addEventListener("click", ()=>warningElement.classList.remove("warning-title-div-opacity"));
 
-  if(Event.key === 'r'){
-    playGame('Rock');
-  } else if ( Event.key === 'p'){
-    playGame('Paper');
-  } else if(Event.key === 's'){
-    playGame('Scissors');
-  }
+const autoplayElement = document.querySelector(".js-autoplay-button");
+autoplayElement.addEventListener("click", autoPlay);
+
+// warning title for reset the score
+const warningElement = document.querySelector(".warning-title-js");
+const yesButtonElement = document.querySelector(".warning-title-button-yes");
+const noButtonElement = document.querySelector(".warning-title-button-no");
+
+yesButtonElement.addEventListener('click',()=>{
+  resetScore();
+  warningElement.classList.add("warning-title-div-opacity");
+})
+noButtonElement.addEventListener('click',()=>{
+  warningElement.classList.add("warning-title-div-opacity");
 })
 
+
+// this is Event listners using keys to work
+document.body.addEventListener("keydown", (Event) => {
+
+  if (Event.key === "r") {
+    playGame("Rock");
+  } else if (Event.key === "p") {
+    playGame("Paper");
+  } else if (Event.key === "s") {
+    playGame("Scissors");
+  }
+});
+
+document.body.addEventListener("keydown", (Event) => {
+  if(Event.key === 'a')
+    autoPlay();
+});
+
+document.body.addEventListener('keydown',(Event)=>{
+  if(Event.key === 'Backspace')
+      warningElement.classList.remove("warning-title-div-opacity");
+})
+
+
+
+
+// displaying the final score 
 function scoreDisplay() {
   const scoreElement = document.querySelector(".js-score");
   scoreElement.innerHTML = `Your Score: Wins: ${scoreCount.Wins} , Losses: ${scoreCount.Losses} , Tie: ${scoreCount.Tie}`;
@@ -48,18 +87,19 @@ let intervalID;
 
 function autoPlay() {
   if (!isAutoPlay) {
-    intervalID = setInterval( () => {
+    intervalID = setInterval(() => {
       const playerMove = randomMoves();
       playGame(playerMove);
     }, 1000);
     isAutoPlay = true;
-    const  autoButtonElement = document.querySelector(".auto-play-button");
+    const autoButtonElement = document.querySelector(".auto-play-button");
+    autoplayElement.innerHTML = "Stop Playing";
     autoButtonElement.classList.add("auto-play-button-active");
-  }
-  else{
+  } else {
     clearInterval(intervalID);
     isAutoPlay = false;
-    const  autoButtonElement = document.querySelector(".auto-play-button");
+    const autoButtonElement = document.querySelector(".auto-play-button");
+    autoplayElement.innerHTML = "Auto Play";
     autoButtonElement.classList.remove("auto-play-button-active");
   }
 }
@@ -91,7 +131,7 @@ function playGame(userChoice) {
     scoreCount.Losses += 1;
   }
 
-  console.log(scoreCount);
+  // console.log(scoreCount);
   localStorage.setItem("scoreCount", JSON.stringify(scoreCount));
 
   showResult(result, userChoice, computerChoice);
@@ -129,3 +169,8 @@ function showMoves(result, userChoice, computerChoice) {
     ".js-moves"
   ).innerHTML = `You picked <img class="moves-image" src="${userChoiceImage}" title="${userChoice}"> Computer picked <img class="moves-image" src="${computerChoiceImage}" title="${computerChoice}">`;
 }
+
+
+
+
+

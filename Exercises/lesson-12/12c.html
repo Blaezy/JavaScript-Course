@@ -5,12 +5,14 @@
     </head>
     <body>
 
-        <button class="start-button-js" onclick="startTime();">Start!</button>
+        <button class="start-button-js" >Start!</button>
 
         <script>
             const buttonElement = document.querySelector(".start-button-js");
 
-            const changeText = function(){buttonElement.innerHTML = "Finished!";}
+            const changeText = ()=>{buttonElement.innerHTML = "Finished!";}
+
+            buttonElement.addEventListener('click',startTime)
 
             function startTime(){
                 setTimeout(changeText,1000);

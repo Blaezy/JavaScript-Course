@@ -4,20 +4,22 @@
     <title>Exercise 12f</title>
   </head>
   <body>
-    <button class="add-button-js" onclick="startTime();">Add to Cart</button>
+    <button class="add-button-js">Add to Cart</button>
     <p class="display-para-js"></p>
 
     <script>
-      const buttonElement = document.querySelector(".display-para-js");
+      const paragraphElement = document.querySelector(".display-para-js");
+      const buttonElement = document.querySelector(".add-button-js");
+      buttonElement.addEventListener("click", startTime);
       let timeoutID;
 
-      const removeText = function () {
-        buttonElement.innerHTML = "";
+      const removeText = () => {
+        paragraphElement.innerHTML = "";
       };
 
       function startTime() {
         clearInterval(timeoutID);
-        buttonElement.innerHTML = "Added";
+        paragraphElement.innerHTML = "Added";
         timeoutID = setTimeout(removeText, 2000);
       }
     </script>

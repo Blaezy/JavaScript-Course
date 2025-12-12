@@ -4,11 +4,21 @@
     <title>Exercise 12i</title>
   </head>
   <body>
-    <button onclick="startButton();">start</button>
-    <button onclick="stopButton();">stop</button>
-    <button onclick="num++;">Add</button>
-    <button onclick="num--">Remove</button>
+    <button class="start-js">start</button>
+    <button class="stop-js">stop</button>
+    <button class="add-js">Add</button>
+    <button class="remove-js">Remove</button>
     <script>
+      const startButtonElement = document.querySelector(".start-js");
+      const stopButtonElement = document.querySelector(".stop-js");
+      const addButtonElement = document.querySelector(".add-js");
+      const removeButtonElement = document.querySelector(".remove-js");
+
+      startButtonElement.addEventListener("click", startButton);
+      stopButtonElement.addEventListener("click", stopButton);
+      addButtonElement.addEventListener("click", () => num++);
+      removeButtonElement.addEventListener("click", () => num--);
+
       let intervalID;
       let num = 2;
 
