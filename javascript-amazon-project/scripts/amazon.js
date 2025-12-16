@@ -1,6 +1,6 @@
 console.log("hello Idiot");
 
-let allProduct = '';
+let allProduct = "";
 
 products.forEach((product) => {
   allProduct += `
@@ -48,14 +48,40 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id="${
+            product.id
+          }">
             Add to Cart
           </button>
         </div>
     `;
 });
 
-
 const productGridElement = document.querySelector(".js-products-grid");
 productGridElement.innerHTML = allProduct;
 
+const productButtonElement = document.querySelectorAll(
+  ".js-add-to-cart-button"
+);
+productButtonElement.forEach((button) => {
+  button.addEventListener("click", () => {
+    const productId = button.dataset.productId;
+
+    let isMatchingItem = false;
+
+    cart.forEach((item) => {
+      if (item.productId === productId) {
+        item.quantity += 1;
+        isMatchingItem = true;
+      }
+    });
+
+    if (cart && !isMatchingItem) {
+      cart.push({
+        productId: productId,
+        quantity: 1,
+      });
+    }
+    console.log(cart);
+  });
+});
