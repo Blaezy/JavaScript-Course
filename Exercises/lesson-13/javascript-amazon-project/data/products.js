@@ -656,5 +656,37 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  // new products
+  {
+    id: "id1",
+    image: "images/products/backpack.jpg",
+    name: "Ultra pro max legendary powerfull all features included Backpack",
+    rating: {
+      stars: 5,
+      count: 9999
+    },
+    priceCents: 8999,
+    keywords: [
+      "ultra",
+      "legendary",
+      "features",
+      "backpack"
+    ]
+  },{
+    id: "id2",
+    image: "images/products/umbrella.jpg",
+    name: "cheapest of the chepest reliable umbrella,Every home should have this",
+    rating: {
+      stars: 3.5,
+      count: 8234
+    },
+    priceCents: 99,
+    keywords: [
+      "umbrella",
+      "cheap",
+      "cheapest",
+      "realiable"
+    ]
   }
 ];
