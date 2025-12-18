@@ -17,12 +17,12 @@ function saveLocalStorage() {
   localStorage.setItem("savedCartItem", JSON.stringify(cart));
 }
 
-export function addToCart(productId) {
+export function addToCart(productId,quantity) {
   let isMatchingItem = false;
 
   cart.forEach((cartItem) => {
     if (cartItem.productId === productId) {
-      cartItem.quantity += 1;
+      cartItem.quantity += quantity;
       isMatchingItem = true;
     }
   });
@@ -30,7 +30,7 @@ export function addToCart(productId) {
   if (cart && !isMatchingItem) {
     cart.push({
       productId: productId,
-      quantity: 1,
+      quantity: quantity,
     });
   }
 

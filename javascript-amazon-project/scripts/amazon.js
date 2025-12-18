@@ -29,7 +29,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -45,7 +45,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -75,11 +75,34 @@ productGridElement.innerHTML = allProduct;
 const productButtonElement = document.querySelectorAll(
   ".js-add-to-cart-button"
 );
+
+let timeoutId;
+
 productButtonElement.forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
 
-    addToCart(productId);
+    const selectElement = document.querySelector(
+      `.js-quantity-selector-${productId}`
+    );
+    const quantity = Number(selectElement.value);
+
+    addToCart(productId,quantity);
     updateCartQuantity();
+    addedToCartTimeout(productId);
   });
 });
+
+
+function addedToCartTimeout(productId){
+  const addedToCartElement = document.querySelector(
+      `.js-added-to-cart-${productId}`
+    );
+    addedToCartElement.classList.add("added-to-cart-opacity");
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      addedToCartElement.classList.remove("added-to-cart-opacity");
+    }, 2000);
+
+}
