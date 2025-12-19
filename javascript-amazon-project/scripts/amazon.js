@@ -1,4 +1,4 @@
-import { cart, addToCart, updateCartQuantity } from "../data/cart.js";
+import { addToCart, calculateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { changeMoney } from "./utils/money.js";
 
@@ -83,9 +83,12 @@ productButtonElement.forEach((button) => {
     addToCart(productId, quantity);
     addedToCartTimeout(productId);
     document.querySelector(".js-cart-quantity").innerHTML =
-      updateCartQuantity();
+      calculateCartQuantity();
   });
 });
+
+document.querySelector(".js-cart-quantity").innerHTML =
+      calculateCartQuantity();
 
 // Todo: fix this quickly switching different products does remove the class early 
 // function addedToCartTimeout(productId) {

@@ -1,5 +1,3 @@
-
-
 export let cart = JSON.parse(localStorage.getItem("savedCartItem")) || [];
 
 // [
@@ -17,7 +15,7 @@ function saveLocalStorage() {
   localStorage.setItem("savedCartItem", JSON.stringify(cart));
 }
 
-export function addToCart(productId,quantity) {
+export function addToCart(productId, quantity) {
   let isMatchingItem = false;
 
   cart.forEach((cartItem) => {
@@ -49,7 +47,7 @@ export function deleteFromCart(productId) {
   saveLocalStorage();
 }
 
-export function updateCartQuantity() {
+export function calculateCartQuantity() {
   let cartQuantity = 0;
 
   cart.forEach((item) => {
@@ -57,4 +55,17 @@ export function updateCartQuantity() {
   });
 
   return cartQuantity;
+}
+
+export function updateQuantity(productId, newQuantity) {
+  let matchingCartItem;
+
+  cart.forEach((cartItem) => {
+    if (cartItem.productId === productId) {
+      matchingCartItem = cartItem;
+    }
+  });
+
+  matchingCartItem.quantity = newQuantity;
+  saveLocalStorage();
 }
