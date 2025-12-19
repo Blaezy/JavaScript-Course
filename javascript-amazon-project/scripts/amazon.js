@@ -1,4 +1,4 @@
-import { cart, addToCart } from "../data/cart.js";
+import { cart, addToCart, updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { changeMoney } from "./utils/money.js";
 
@@ -59,16 +59,6 @@ products.forEach((product) => {
     `;
 });
 
-function updateCartQuantity() {
-  let cartQuantity = 0;
-
-  cart.forEach((item) => {
-    cartQuantity += item.quantity;
-  });
-
-  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
-}
-
 const productGridElement = document.querySelector(".js-products-grid");
 productGridElement.innerHTML = allProduct;
 
@@ -77,6 +67,9 @@ const productButtonElement = document.querySelectorAll(
 );
 
 let timeoutId;
+let previousProductId;
+const addedToCartTimeouts = {};
+
 
 productButtonElement.forEach((button) => {
   button.addEventListener("click", () => {
@@ -87,22 +80,51 @@ productButtonElement.forEach((button) => {
     );
     const quantity = Number(selectElement.value);
 
-    addToCart(productId,quantity);
-    updateCartQuantity();
+    addToCart(productId, quantity);
     addedToCartTimeout(productId);
+    document.querySelector(".js-cart-quantity").innerHTML =
+      updateCartQuantity();
   });
 });
 
+// Todo: fix this quickly switching different products does remove the class early 
+// function addedToCartTimeout(productId) {
+//   const addedToCartElement = document.querySelector(
+//     `.js-added-to-cart-${productId}`
+//   );
 
-function addedToCartTimeout(productId){
+//   addedToCartElement.classList.add("added-to-cart-opacity");
+
+//   if (productId === previousProductId) {
+//     clearTimeout(timeoutId);
+//   }
+
+//   previousProductId = productId;
+//   timeoutId = setTimeout(() => {
+//     addedToCartElement.classList.remove("added-to-cart-opacity");
+//   }, 2000);
+// }
+
+
+
+function addedToCartTimeout(productId) {
   const addedToCartElement = document.querySelector(
-      `.js-added-to-cart-${productId}`
-    );
-    addedToCartElement.classList.add("added-to-cart-opacity");
+    `.js-added-to-cart-${productId}`
+  );
 
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      addedToCartElement.classList.remove("added-to-cart-opacity");
-    }, 2000);
+  if (!addedToCartElement) return;
 
+  // Clear existing timeout for this product
+  if (addedToCartTimeouts[productId]) {
+    clearTimeout(addedToCartTimeouts[productId]);
+  }
+
+  // Ensure class is applied
+  addedToCartElement.classList.add("added-to-cart-opacity");
+
+  // Set new timeout for this product only
+  addedToCartTimeouts[productId] = setTimeout(() => {
+    addedToCartElement.classList.remove("added-to-cart-opacity");
+    delete addedToCartTimeouts[productId];
+  }, 2000);
 }
