@@ -11,6 +11,10 @@ export let cart = JSON.parse(localStorage.getItem("savedCartItem")) || [];
 //   },
 // ];
 
+export function manuallyClearCartStorage(){
+  localStorage.clear("savedCartItem")
+}
+
 function saveLocalStorage() {
   localStorage.setItem("savedCartItem", JSON.stringify(cart));
 }

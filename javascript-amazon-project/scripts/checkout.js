@@ -5,7 +5,11 @@ import {
   updateQuantity,
 } from "../data/cart.js";
 import { products } from "../data/products.js";
-import { changeMoney } from "./utils/money.js";
+import  changeMoney  from "./utils/money.js";
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+
+
+
 let cartItemHTMl = "";
 
 cart.forEach((cartItem) => {
@@ -185,3 +189,17 @@ function updateDisplayMiddle() {
   document.querySelector(".js-middle-cart-quantity").innerHTML =
     calculateCartQuantity() + " items";
 }
+
+
+
+let date = dayjs();
+
+console.log(date);
+const newdate = date.add(4,'day');
+
+const todayDateDisplay = newdate.format('DD MMMM YYYY dddd');
+
+
+console.log(todayDateDisplay);
+
+
