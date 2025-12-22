@@ -83,6 +83,5 @@ export function updateDeliveryOption(productId,deliveryOptionsId){
   });
 
   matchingDeliveryItem.deliveryOptionsId = deliveryOptionsId;
-  console.log(cart);
   saveLocalStorage();
 }
