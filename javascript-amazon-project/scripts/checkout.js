@@ -3,7 +3,7 @@ import {
   deleteFromCart,
   calculateCartQuantity,
   updateQuantity,
-  manuallyClearCartStorage
+  updateDeliveryOption
 } from "../data/cart.js";
 import { products } from "../data/products.js";
 import  changeMoney  from "./utils/money.js";
@@ -103,12 +103,14 @@ function deliveryOptionsHTML (matchingCartItem,cartItem){
     const newDate = today.add(deliveryOption.deliveryDays,'day');
     const dateString = newDate.format("dddd, MMMM D");
 
-    const priceString = deliveryOption.priceCents === 0 ? `Free` : `$${changeMoney(deliveryOption.priceCents)}`
+    const priceString = deliveryOption.priceCents === 0 ? 'Free' : `$${changeMoney(deliveryOption.priceCents)}`
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionsId;
 
     Html += `
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option" 
+          data-product-id="${matchingCartItem.id}"
+          data-delivery-options-id="${deliveryOption.id}">
          <input
            type="radio"
            ${isChecked ? 'checked' : ''}
@@ -214,15 +216,10 @@ function updateDisplayMiddle() {
 }
 
 
-
-// let date = dayjs();
-
-// console.log(date);
-// const newdate = date.add(4,'day');
-
-// const todayDateDisplay = newdate.format('DD MMMM YYYY dddd');
-
-
-// console.log(todayDateDisplay);
-
-// console.log(cart);
+document.querySelectorAll('.js-delivery-option')
+  .forEach((element)=>{
+    element.addEventListener(('click'),()=>{
+      const {productId,deliveryOptionsId} = element.dataset ;
+      updateDeliveryOption(productId,deliveryOptionsId);
+    })
+  })
