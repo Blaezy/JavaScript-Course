@@ -1,1 +1,262 @@
-<hello></hello>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Bubble Shooter</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #0b0b0b;
+    font-family: Arial, sans-serif;
+}
+
+#hud {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    color: white;
+    z-index: 10;
+    font-size: 18px;
+}
+
+#player {
+    position: absolute;
+    width: 40px;
+    height: 80px;
+    z-index: 5;
+}
+
+#gun {
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background: #ccc;
+    top: 30px;
+    left: 20px;
+    transform-origin: left center;
+}
+
+.stick-head {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.stick-body {
+    width: 2px;
+    height: 40px;
+    background: white;
+    margin: auto;
+}
+
+.ai {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #7ff, #08f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.bullet {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: yellow;
+    border-radius: 50%;
+}
+
+#gameOver {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 20;
+}
+</style>
+</head>
+
+<body>
+
+<div id="hud">
+Score: <span id="score">0</span><br>
+High Score: <span id="highScore">0</span>
+</div>
+
+<div id="player">
+    <div class="stick-head"></div>
+    <div class="stick-body"></div>
+    <div id="gun"></div>
+</div>
+
+<div id="gameOver">
+<h1>Game Over</h1>
+<p>AI still wins 🤖</p>
+<p>Score: <span id="finalScore"></span></p>
+<button onclick="location.reload()">Restart</button>
+</div>
+
+<script>
+const icons = ["▶️", "📘", "📸"];
+const AIs = [];
+const bullets = [];
+
+let score = 0;
+let running = true;
+
+const scoreEl = document.getElementById("score");
+const highScoreEl = document.getElementById("highScore");
+const gun = document.getElementById("gun");
+const player = document.getElementById("player");
+const gameOverEl = document.getElementById("gameOver");
+const finalScoreEl = document.getElementById("finalScore");
+
+let highScore = localStorage.getItem("aiHighScore") || 0;
+highScoreEl.textContent = highScore;
+
+// Player state
+let px = innerWidth / 2;
+let py = innerHeight / 2;
+const speed = 4;
+
+// 🔑 CLEAN INPUT SYSTEM
+const keys = {};
+document.addEventListener("keydown", e => {
+    keys[e.code] = true;
+    if (e.code.startsWith("Arrow")) e.preventDefault();
+});
+document.addEventListener("keyup", e => {
+    keys[e.code] = false;
+});
+
+// Mouse
+let mouseX = 0, mouseY = 0;
+document.addEventListener("mousemove", e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+// Spawn AI OUTSIDE screen
+function createAI() {
+    const ai = document.createElement("div");
+    ai.className = "ai";
+    ai.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+
+    const edge = Math.floor(Math.random() * 4);
+    if (edge === 0) { ai.x = -60; ai.y = Math.random() * innerHeight; }
+    if (edge === 1) { ai.x = innerWidth + 60; ai.y = Math.random() * innerHeight; }
+    if (edge === 2) { ai.x = Math.random() * innerWidth; ai.y = -60; }
+    if (edge === 3) { ai.x = Math.random() * innerWidth; ai.y = innerHeight + 60; }
+
+    ai.speed = 1.5;
+
+    document.body.appendChild(ai);
+    AIs.push(ai);
+}
+
+for (let i = 0; i < 12; i++) createAI();
+
+// Shooting
+document.addEventListener("click", () => {
+    if (!running) return;
+
+    const angle = Math.atan2(mouseY - py, mouseX - px);
+    const bullet = document.createElement("div");
+    bullet.className = "bullet";
+    bullet.x = px + Math.cos(angle) * 40;
+    bullet.y = py + Math.sin(angle) * 40;
+    bullet.vx = Math.cos(angle) * 10;
+    bullet.vy = Math.sin(angle) * 10;
+
+    document.body.appendChild(bullet);
+    bullets.push(bullet);
+});
+
+// Game loop
+function loop() {
+    if (!running) return;
+
+    // ✅ FIXED MOVEMENT
+    if (keys["KeyW"] || keys["ArrowUp"]) py -= speed;
+    if (keys["KeyS"] || keys["ArrowDown"]) py += speed;
+    if (keys["KeyA"] || keys["ArrowLeft"]) px -= speed;
+    if (keys["KeyD"] || keys["ArrowRight"]) px += speed;
+
+    px = Math.max(0, Math.min(innerWidth - 40, px));
+    py = Math.max(0, Math.min(innerHeight - 80, py));
+
+    player.style.left = px + "px";
+    player.style.top = py + "px";
+
+    // Aim gun
+    const angle = Math.atan2(mouseY - py, mouseX - px);
+    gun.style.transform = `rotate(${angle}rad)`;
+
+    // Bullets
+    bullets.forEach((b, bi) => {
+        b.x += b.vx;
+        b.y += b.vy;
+        b.style.left = b.x + "px";
+        b.style.top = b.y + "px";
+        if (b.x < 0 || b.y < 0 || b.x > innerWidth || b.y > innerHeight) {
+            b.remove();
+            bullets.splice(bi, 1);
+        }
+    });
+
+    // AI chase + collision
+    AIs.forEach((ai, i) => {
+        const dx = px - ai.x;
+        const dy = py - ai.y;
+        const d = Math.hypot(dx, dy);
+
+        ai.x += (dx / d) * ai.speed;
+        ai.y += (dy / d) * ai.speed;
+
+        ai.style.left = ai.x + "px";
+        ai.style.top = ai.y + "px";
+
+        if (d < 35) endGame();
+    });
+
+    // Hits
+    bullets.forEach((b, bi) => {
+        AIs.forEach((ai, aiI) => {
+            if (Math.hypot(b.x - ai.x, b.y - ai.y) < 30) {
+                ai.remove();
+                b.remove();
+                AIs.splice(aiI, 1);
+                bullets.splice(bi, 1);
+                score += 10;
+                scoreEl.textContent = score;
+                createAI();
+            }
+        });
+    });
+
+    requestAnimationFrame(loop);
+}
+
+function endGame() {
+    running = false;
+    gameOverEl.style.display = "flex";
+    finalScoreEl.textContent = score;
+    if (score > highScore) localStorage.setItem("aiHighScore", score);
+}
+
+loop();
+</script>
+</body>
+</html>
