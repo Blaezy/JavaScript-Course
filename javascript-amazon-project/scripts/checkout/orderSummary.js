@@ -120,7 +120,7 @@ export function renderOderSummary(){
     deleteLink.addEventListener("click", () => {
       const productId = deleteLink.dataset.productId;
       deleteFromCart(productId);
-      updateDisplayRemovedItem(productId);
+      renderOderSummary();
       updateDisplayMiddle();
       rederPaymentSummary();
     });
