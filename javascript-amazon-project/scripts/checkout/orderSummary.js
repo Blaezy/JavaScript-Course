@@ -140,6 +140,8 @@ export function renderOderSummary(){
       const inputQuantityElement = document.querySelector(
         `.input-quantity-${productId}`
       );
+      inputQuantityElement.value = '';
+      inputQuantityElement.focus();
       inputQuantityElement.addEventListener("keydown", (Event) => {
         if (Event.key === "Enter") {
           document
