@@ -5,7 +5,7 @@ import changeMoney from "../utils/money.js";
 
 
 
-export function rederPaymentSummary(){
+export function renderPaymentSummary(){
     
     let productPriceCents = 0;
     let productShippingCents = 0;
