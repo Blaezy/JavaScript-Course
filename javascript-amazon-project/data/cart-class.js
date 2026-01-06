@@ -1,14 +1,14 @@
 class Cart {
   cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
-  localStorageKey;
+  #localStorageKey;  // this is private property only be used inside the class and use '#' to also make function private 
 
 
   constructor(localStorageKey){  // this will run when the object is created and its name is fixed 
-    this.localStorageKey = localStorageKey;
+    this.#localStorageKey = localStorageKey;
   }
 
   saveLocalStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
   addToCart(productId, quantity) {
