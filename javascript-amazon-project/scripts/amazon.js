@@ -18,14 +18,14 @@ products.forEach((product) => {
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${product.rating.stars * 10}.png">
+              src=${product.getStarUrl()}>
             <div class="product-rating-count link-primary">
               ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-            $${changeMoney(product.priceCents)}
+            ${product.getPrice()}
           </div>
 
           <div class="product-quantity-container">
@@ -70,7 +70,6 @@ let timeoutId;
 let previousProductId;
 const addedToCartTimeouts = {};
 
-
 productButtonElement.forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
@@ -87,10 +86,9 @@ productButtonElement.forEach((button) => {
   });
 });
 
-document.querySelector(".js-cart-quantity").innerHTML =
-      calculateCartQuantity();
+document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
 
-// Todo: fix this quickly switching different products does remove the class early 
+// Todo: fix this 'quickly switching different products does remove the class early'
 // function addedToCartTimeout(productId) {
 //   const addedToCartElement = document.querySelector(
 //     `.js-added-to-cart-${productId}`
@@ -108,8 +106,7 @@ document.querySelector(".js-cart-quantity").innerHTML =
 //   }, 2000);
 // }
 
-
-
+// hack: this is todo work fix by chatgpt 
 function addedToCartTimeout(productId) {
   const addedToCartElement = document.querySelector(
     `.js-added-to-cart-${productId}`
