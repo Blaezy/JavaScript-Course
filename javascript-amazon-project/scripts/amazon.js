@@ -1,11 +1,14 @@
 import { addToCart, calculateCartQuantity } from "../data/cart.js";
-import { products } from "../data/products.js";
+import { products, loadProducts } from "../data/products.js";
 import { changeMoney } from "./utils/money.js";
 
-let allProduct = "";
+loadProducts(renderProductGrid);
 
-products.forEach((product) => {
-  allProduct += `
+function renderProductGrid() {
+  let allProduct = "";
+
+  products.forEach((product) => {
+    allProduct += `
          <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -51,81 +54,73 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id="${
-            product.id
-          }">
+          <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>
     `;
-});
-
-const productGridElement = document.querySelector(".js-products-grid");
-productGridElement.innerHTML = allProduct;
-
-const productButtonElement = document.querySelectorAll(
-  ".js-add-to-cart-button"
-);
-
-let timeoutId;
-let previousProductId;
-const addedToCartTimeouts = {};
-
-productButtonElement.forEach((button) => {
-  button.addEventListener("click", () => {
-    const productId = button.dataset.productId;
-
-    const selectElement = document.querySelector(
-      `.js-quantity-selector-${productId}`
-    );
-    const quantity = Number(selectElement.value);
-
-    addToCart(productId, quantity);
-    addedToCartTimeout(productId);
-    document.querySelector(".js-cart-quantity").innerHTML =
-      calculateCartQuantity();
   });
-});
 
-document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
+  const productGridElement = document.querySelector(".js-products-grid");
+  productGridElement.innerHTML = allProduct;
 
-// Todo: fix this 'quickly switching different products does remove the class early'
-// function addedToCartTimeout(productId) {
-//   const addedToCartElement = document.querySelector(
-//     `.js-added-to-cart-${productId}`
-//   );
+  const productButtonElement = document.querySelectorAll(".js-add-to-cart-button");
 
-//   addedToCartElement.classList.add("added-to-cart-opacity");
+  let timeoutId;
+  let previousProductId;
+  const addedToCartTimeouts = {};
 
-//   if (productId === previousProductId) {
-//     clearTimeout(timeoutId);
-//   }
+  productButtonElement.forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.productId;
 
-//   previousProductId = productId;
-//   timeoutId = setTimeout(() => {
-//     addedToCartElement.classList.remove("added-to-cart-opacity");
-//   }, 2000);
-// }
+      const selectElement = document.querySelector(`.js-quantity-selector-${productId}`);
+      const quantity = Number(selectElement.value);
 
-// hack: this is todo work fix by chatgpt 
-function addedToCartTimeout(productId) {
-  const addedToCartElement = document.querySelector(
-    `.js-added-to-cart-${productId}`
-  );
+      addToCart(productId, quantity);
+      addedToCartTimeout(productId);
+      document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
+    });
+  });
 
-  if (!addedToCartElement) return;
+  document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
 
-  // Clear existing timeout for this product
-  if (addedToCartTimeouts[productId]) {
-    clearTimeout(addedToCartTimeouts[productId]);
+  // Todo: fix this 'quickly switching different products does remove the class early'
+  // function addedToCartTimeout(productId) {
+  //   const addedToCartElement = document.querySelector(
+  //     `.js-added-to-cart-${productId}`
+  //   );
+
+  //   addedToCartElement.classList.add("added-to-cart-opacity");
+
+  //   if (productId === previousProductId) {
+  //     clearTimeout(timeoutId);
+  //   }
+
+  //   previousProductId = productId;
+  //   timeoutId = setTimeout(() => {
+  //     addedToCartElement.classList.remove("added-to-cart-opacity");
+  //   }, 2000);
+  // }
+
+  // hack: this is todo work fix by chatgpt
+  function addedToCartTimeout(productId) {
+    const addedToCartElement = document.querySelector(`.js-added-to-cart-${productId}`);
+
+    if (!addedToCartElement) return;
+
+    // Clear existing timeout for this product
+    if (addedToCartTimeouts[productId]) {
+      clearTimeout(addedToCartTimeouts[productId]);
+    }
+
+    // Ensure class is applied
+    addedToCartElement.classList.add("added-to-cart-opacity");
+
+    // Set new timeout for this product only
+    addedToCartTimeouts[productId] = setTimeout(() => {
+      addedToCartElement.classList.remove("added-to-cart-opacity");
+      delete addedToCartTimeouts[productId];
+    }, 2000);
   }
-
-  // Ensure class is applied
-  addedToCartElement.classList.add("added-to-cart-opacity");
-
-  // Set new timeout for this product only
-  addedToCartTimeouts[productId] = setTimeout(() => {
-    addedToCartElement.classList.remove("added-to-cart-opacity");
-    delete addedToCartTimeouts[productId];
-  }, 2000);
 }
