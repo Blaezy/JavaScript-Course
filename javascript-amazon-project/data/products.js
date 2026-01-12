@@ -16,6 +16,7 @@ class Product {
   name;
   rating;
   priceCents;
+  sizeChartLink;
 
   constructor(productDetail) {
     this.id = productDetail.id;
@@ -23,6 +24,7 @@ class Product {
     this.name = productDetail.name;
     this.rating = productDetail.rating;
     this.priceCents = productDetail.priceCents;
+    this.sizeChartLink = productDetail.sizeChartLink;
   }
 
   getStarUrl() {
@@ -32,7 +34,27 @@ class Product {
   getPrice() {
     return `$${changeMoney(this.priceCents)}`;
   }
+
+  getSizeChartLink(){
+    return '';
+  }
 }
+
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetail){
+    super(productDetail);
+    this.sizeChartLink = productDetail.sizeChartLink;
+  }
+
+  getSizeChartLink(){
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
+    `;
+  }
+}
+
 
 export const products = [
   {
@@ -506,5 +528,8 @@ export const products = [
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
   },
 ].map((productDetail) => {
+  if(productDetail.type === 'clothing'){
+    return new Clothing(productDetail);
+  }
   return new Product(productDetail);
 });
