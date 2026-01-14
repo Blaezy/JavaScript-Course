@@ -73,6 +73,24 @@ class Appliance extends Product {
   }
 }
 
+/*
+function loadProductsFetch(){
+  fetch('https://supersimplebackend.dev/products').then((response)=>{
+    return response.json();
+  }).then((productData)=>{
+    products = productData.map((productDetail) => {
+      if (productDetail.type === "clothing") {
+        return new Clothing(productDetail);
+      }
+      if (productDetail.type === "appliance") {
+        return new Appliance(productDetail);
+      }
+      return new Product(productDetail);
+    });
+  })
+}
+loadProductsFetch();
+*/
 
 export let products = [];
 
